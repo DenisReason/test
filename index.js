@@ -4,7 +4,7 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 const url = process.env.url
-
+const PORT = process.env.PORT || 3000
 const app = express()
 const Client = new MongoClient(url)
 const dbName = "MinhDb"
@@ -24,4 +24,9 @@ async function connectToDB(){
 
 app.post('/login', (req, res, next)=>{
     connectToDB()
+})
+app.listen(PORT,()=>{
+    console.log('====================================');
+    console.log(`app run on port ${PORT}`);
+    console.log('====================================');
 })
